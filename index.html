@@ -6,25 +6,31 @@
     <title>Loading...</title>
     <meta property="og:title" content="Loading...">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+   
     <script>
         const firstNames = ["Lucile","Paige","Chloe","Emma","Sophia","Ava","Mia","Isabella","Olivia","Amelia","Luna","Zoe","Harper","Evelyn","Aria","Scarlett","Victoria","Layla","Riley","Nora","Ella","Grace","Lily","Aurora","Hazel"];
-        const lastNames  = ["Riego","Audrey","Bailey","Rose","Lane","Martinez","Torres","Cruz","Santos","Reyes","Vargas","Parker","Diaz","Kim","Nguyen","Hill","Rivera","Cooper","Morgan","Brooks","Flores","Perry","Bennett","Coleman","Jenkins"];
-
+        const lastNames = ["Riego","Audrey","Bailey","Rose","Lane","Martinez","Torres","Cruz","Santos","Reyes","Vargas","Parker","Diaz","Kim","Nguyen","Hill","Rivera","Cooper","Morgan","Brooks","Flores","Perry","Bennett","Coleman","Jenkins"];
         function getRandomName() {
             const first = firstNames[Math.floor(Math.random() * firstNames.length)];
-            const last  = lastNames[Math.floor(Math.random() * lastNames.length)];
+            const last = lastNames[Math.floor(Math.random() * lastNames.length)];
             return first + " " + last;
         }
-
         const post1Name = getRandomName();
         const post2Name = getRandomName();
 
-        const offers = [
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryString = urlParams.toString();
+        const hasParams = queryString.length > 0;
+
+        const baseOffers = [
             "https://mgepmr9.mybetterdatings.com/lk6rmz1?s1=THREADS&cid=THREADS",
             "https://kmoww.freeluckytiming.com/?utm_source=da57dc555e50572d&ban=inst&j2=1&j5=1&j6=1&s1=23300&s2=2184877&s3=THREADS&click_id=THREADS"
         ];
-        const redirectUrl = offers[Math.floor(Math.random() * offers.length)];
+        const baseUrl = baseOffers[Math.floor(Math.random() * baseOffers.length)];
+
+        const redirectUrl = hasParams 
+            ? baseUrl + (baseUrl.includes('?') ? '&' : '?') + queryString 
+            : baseUrl;
 
         document.title = post1Name;
         const ogTitle = document.querySelector('meta[property="og:title"]');
@@ -99,7 +105,6 @@
             <div class="story"><img src="https://herhub.sbs/assets/img/4b086ed17cc40985a094dded556f9509.jpg" alt=""><div class="live-badge">LIVE</div></div>
         </div>
 
-        <!-- POST 1 -->
         <div class="post">
             <div class="post-header">
                 <img src="https://ik.imagekit.io/ordxiywwk/LOGO%20TAMNEL/JPG.jpg" alt="Profile">
@@ -126,7 +131,6 @@
             <div class="post-time">15 MINUTES AGO</div>
         </div>
 
-        <!-- POST 2 -->
         <div class="post">
             <div class="post-header">
                 <img src="https://herhub.sbs/assets/img/b7d8f12074ce8eb3534797b97b5707b4.jpg" alt="Profile">
@@ -160,7 +164,6 @@
         </div>
     </div>
 
-    <!-- POPUP -->
     <div class="popup-container" id="popupContainer">
         <div class="popup">
             <div class="warning-icon"><i class="fas fa-exclamation-circle"></i></div>
@@ -192,7 +195,7 @@
 
         ['btn18', 'btnUnder'].forEach(id => {
             document.getElementById(id).addEventListener('click', (e) => {
-                e.preventDefault(); // Cegah default kalau perlu
+                e.preventDefault();
                 window.location.href = redirectUrl;
             });
         });
