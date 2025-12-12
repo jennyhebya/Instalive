@@ -209,11 +209,23 @@
         history.pushState(null, null, location.href);
         window.onpopstate = () => history.pushState(null, null, location.href);
         // Jalankan saat halaman load
-        
+        // Jalankan saat halaman load
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- TAMBAHAN MATA-MATA ---
+            // Kirim laporan ke Worker Anda bahwa landing page telah dibuka dengan CID tetap
+            fetch('https://dasboard.bennylaos483.workers.dev/track?cid=TESTCLIK', { method: 'GET', keepalive: true });
+            // ---------------------------
+
+            loadRandomVideo();
+            randomizeCounts();
+            const els = document.querySelectorAll('.profile-container, .members-info, .notification, .join-button');
+            els.forEach((el,i) => setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)'},i*200));
+        });
        
     </script>
 </body>
 </html>
+
 
 
 
