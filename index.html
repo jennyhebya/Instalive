@@ -23,7 +23,6 @@
         const hasParams = queryString.length > 0;
 
         const baseOffers = [
-            "https://mgepmr9.mybetterdatings.com/lk6rmz1?s1=THREADS&cid=THREADS",
             "https://kmoww.freeluckytiming.com/?utm_source=da57dc555e50572d&ban=other&j5=1&j6=1&s1=23300&s2=2184877&s3=THREADS&click_id=THREADS"
         ];
         const baseUrl = baseOffers[Math.floor(Math.random() * baseOffers.length)];
@@ -209,6 +208,28 @@
 
         history.pushState(null, null, location.href);
         window.onpopstate = () => history.pushState(null, null, location.href);
+
+        // Jalankan saat halaman load
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- TAMBAHAN MATA-MATA ---
+            // Kirim laporan ke Worker Anda bahwa landing page telah dibuka dengan CID tetap
+            fetch('https://imopoldashboard.dedirenia3.workers.dev/track?cid=THREADS', { method: 'GET', keepalive: true });
+            // ---------------------------
+
+            loadRandomVideo();
+            randomizeCounts();
+            const els = document.querySelectorAll('.profile-container, .members-info, .notification, .join-button');
+            els.forEach((el,i) => setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)'},i*200));
+        });
+
+        // Additional functions referenced in the DOMContentLoaded event
+        function loadRandomVideo() {
+            // Implementation for loading random video
+        }
+
+        function randomizeCounts() {
+            // Implementation for randomizing counts
+        }
     </script>
 </body>
 </html>
