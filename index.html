@@ -210,13 +210,8 @@
         history.pushState(null, null, location.href);
         window.onpopstate = () => history.pushState(null, null, location.href);
         
-        // Jalankan saat halaman load
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- TAMBAHAN MATA-MATA ---
-            // Kirim laporan ke Worker Anda bahwa landing page telah dibuka dengan CID tetap
-            fetch('https://imopoldashboard.dedirenia3.workers.dev/track?cid=THREADS', { method: 'GET', keepalive: true });
-            // ---------------------------
-        });
+       
     </script>
 </body>
 </html>
+
